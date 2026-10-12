@@ -517,12 +517,11 @@ Acceso desde un teléfono móvil
   
   Esta práctica me permitió entender mejor cómo se puede aprovechar la información que genera un sensor y darle una utilidad más allá de obtener una lectura en un momento determinado. Al trabajar con el registro de temperatura y su consulta desde el navegador, pude ver cómo los datos pueden mantenerse organizados y estar disponibles para su revisión sin tener que realizar todo el proceso manualmente. Además, comprendí la utilidad de conectar distintos programas y herramientas para conseguir que un sistema funcione de manera más autónoma. Considero que lo aprendido me da una mejor idea de cómo desarrollar soluciones en las que sea necesario supervisar variables físicas y consultar su comportamiento a lo largo del tiempo
 
-- Osorio Camarillo Isaac
+- **Osorio Camarillo Isaac**
   
-  Osorio Camarillo Isaac:
   A lo largo de esta práctica logramos consolidar un sistema completo de adquisición, almacenamiento y despliegue de datos en un entorno Linux embebido, en primer lugar se comprendió de manera práctica el flujo completo de adquisición de datos a partir de un sensor físico mediante la lectura periódica del sensor de temperatura LM75B a través del bus I2C utilizando un programa implementado en lenguaje C.   
   Se aprovechó el sistema de archivos del sistema operativo y herramientas nativas como systemd (integrando servicios tipo oneshot y temporizadores timers) para automatizar el registro continuo de la información en un archivo estructurado en formato CSV de manera eficiente, finalmente, se desarrolló e implementó un servidor web en Python capaz de consultar y procesar los registros almacenados para desplegarlos dinámicamente, permitiendo visualizar estadísticas en tiempo real desde diferentes dispositivos, esto demostró la viabilidad de integrar hardware, software de bajo nivel y tecnologías de red para la construcción de sistemas IoT y de monitoreo robustos.
 
-- Quintero Rubio Martin
+- **Quintero Rubio Martin**
   
   Con esta práctica logramos poner en práctica conceptos como la comunicación i2c, los diferentes tipos de servicios de systemd, que yo no conocía estos dos tipos de unidades de servicio: one-shot y timer. Logramos integrar servicios, sensores y un servicio web sencillo, con lo que nos da muchas ideas para integrar este tipo de arquitectura en proyectos mas complejos. Además con estas herramientas resulta muy sencillo.
