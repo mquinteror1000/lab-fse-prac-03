@@ -61,7 +61,6 @@ alumno@raspberrypi:~/practica03 $ tree
 └── README.md
 
 5 directories, 8 files
-
 ```
 
 #### 1.2 Implementamos logger_lm75b.c
@@ -83,7 +82,7 @@ int main() {
     float temp_c = 0.0f;
     // Se asume el bus /dev/i2c-1 y la dirección 0x48 por defecto
     int rc = lm75b_read_temperature_c("/dev/i2c-1", 0x48, &temp_c);
-    
+
     if (rc < 0) {
         fprintf(stderr, "Error al leer el sensor LM75B: %s\n", strerror(-rc));
         return 1;
@@ -141,7 +140,6 @@ int main() {
     fclose(f);
     return 0;
 }
-
 ```
 
 #### 1.3 Compilación
@@ -158,9 +156,9 @@ SOURCES = logger_lm75b.c ../drivers/lm75b/lm75b.c
 .PHONY: all clean
 all: $(TARGET)
 $(TARGET) : $(SOURCES)
-	$(CC) $(CFLAGS) -o $(TARGET) $(SOURCES)
+    $(CC) $(CFLAGS) -o $(TARGET) $(SOURCES)
 clean :
-	rm -f $(TARGET)
+    rm -f $(TARGET)
 ```
 
 construimos
@@ -295,7 +293,6 @@ alumno@raspberrypi:~/practica03 $ tree
 │       ├── lm75b.c
 │       └── lm75b.h
 └── README.md
-
 ```
 
 #### 2.3 Creación del servidor web con python
@@ -327,10 +324,10 @@ def read_log_file():
     (timestamp, temperatura).
     """
     readings = []
-    
+
     if not LOG_FILE.exists():
         return readings
-        
+
     try:
         with open(LOG_FILE, mode='r', encoding='utf-8') as f:
             reader = csv.DictReader(f)
@@ -344,7 +341,7 @@ def read_log_file():
                     continue
     except OSError:
         pass
-        
+
     return readings
 
 def build_html(readings):
@@ -361,7 +358,7 @@ def build_html(readings):
         min_temp = min(temperatures)
         max_temp = max(temperatures)
         avg_temp = sum(temperatures) / total_samples
-        
+
         # Fecha y hora legible extra
         last_time_str = datetime.datetime.fromtimestamp(last_timestamp).strftime('%Y-%m-%d %H:%M:%S')
 
@@ -429,7 +426,7 @@ class SensorWebHandler(BaseHTTPRequestHandler):
             message = html.escape(str(error))
             page = build_html([])
             print(f"Error al leer el archivo: {message}")
-            
+
         body = page.encode("utf-8")
         self.send_response(200)
         self.send_header("Content-Type", "text/html; charset=utf-8")
@@ -450,7 +447,6 @@ def run_server():
 
 if __name__ == "__main__":
     run_server()
-
 ```
 
 Y lo ejecutamos
@@ -511,11 +507,21 @@ Acceso desde un teléfono móvil
 
 ## Conclusiones
 
-- sdsd
+- **Guerrero Gutiérrez Héctor**
+  
+  Durante esta práctica logré comprender la importancia de la automatización en sistemas operativos Linux mediante el uso de systemd, identificando claramente la diferencia de roles entre la lógica de un programa, la configuración de un servicio y la programación con temporizadores (.timer).
+  
+  Aprendí que delegar el control del tiempo al sistema operativo en lugar de implementarlo dentro del código (por ejemplo, evitando bucles infinitos en el script) resulta en un uso mucho más eficiente de los recursos de hardware, además de garantizar una ejecución confiable y modular. Esta metodología me brindó una visión práctica sobre cómo estructurar tareas periódicas de manera profesional para aplicaciones en entornos de monitoreo.
 
-- sdsdsd
+- **Mendoza González Mario**
+  
+  Esta práctica me permitió entender mejor cómo se puede aprovechar la información que genera un sensor y darle una utilidad más allá de obtener una lectura en un momento determinado. Al trabajar con el registro de temperatura y su consulta desde el navegador, pude ver cómo los datos pueden mantenerse organizados y estar disponibles para su revisión sin tener que realizar todo el proceso manualmente. Además, comprendí la utilidad de conectar distintos programas y herramientas para conseguir que un sistema funcione de manera más autónoma. Considero que lo aprendido me da una mejor idea de cómo desarrollar soluciones en las que sea necesario supervisar variables físicas y consultar su comportamiento a lo largo del tiempo
 
-- sdsd
+- Osorio Camarillo Isaac
+  
+  Osorio Camarillo Isaac:
+  A lo largo de esta práctica logramos consolidar un sistema completo de adquisición, almacenamiento y despliegue de datos en un entorno Linux embebido, en primer lugar se comprendió de manera práctica el flujo completo de adquisición de datos a partir de un sensor físico mediante la lectura periódica del sensor de temperatura LM75B a través del bus I2C utilizando un programa implementado en lenguaje C.   
+  Se aprovechó el sistema de archivos del sistema operativo y herramientas nativas como systemd (integrando servicios tipo oneshot y temporizadores timers) para automatizar el registro continuo de la información en un archivo estructurado en formato CSV de manera eficiente, finalmente, se desarrolló e implementó un servidor web en Python capaz de consultar y procesar los registros almacenados para desplegarlos dinámicamente, permitiendo visualizar estadísticas en tiempo real desde diferentes dispositivos, esto demostró la viabilidad de integrar hardware, software de bajo nivel y tecnologías de red para la construcción de sistemas IoT y de monitoreo robustos.
 
 - Quintero Rubio Martin
   
