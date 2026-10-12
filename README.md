@@ -460,7 +460,7 @@ Presione Ctrl+C para detenerlo.
 Para probarlo, accedemos a la raspberrypi en otra terminal haciendo uso de la redirección de puertos de ssh
 
 ```shellsession
-martin@pc-bdx-mqr:~$ ssh -L 8000:localhost:8000 debian13
+martin@pc-bdx-mqr:~$ ssh -L 8000:localhost:8000 rpi
 ```
 
 Con lo que ahora es posible visualizar la página desde una PC
